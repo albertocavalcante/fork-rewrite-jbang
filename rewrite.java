@@ -48,6 +48,7 @@ import org.openrewrite.yaml.YamlParser;
 import org.openrewrite.yaml.YamlVisitor;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.HelpCommand;
 import picocli.CommandLine.Option;
 
 import java.io.BufferedWriter;
@@ -70,7 +71,7 @@ import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-@Command(name = "rewrite", mixinStandardHelpOptions = true, version = "rewrite 0.1", description = "rewrite made with jbang", subcommands = rewrite.rewriteDiscover.class)
+@Command(name = "rewrite", mixinStandardHelpOptions = true, version = "rewrite 0.1", description = "rewrite made with jbang", subcommands = {HelpCommand.class, rewrite.rewriteDiscover.class})
 class rewrite implements Callable<Integer> {
 
     private static final String RECIPE_NOT_FOUND_EXCEPTION_MSG = "Could not find recipe '%s' among available recipes";
