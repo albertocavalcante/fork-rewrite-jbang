@@ -15,7 +15,7 @@
 //DEPS org.openrewrite:rewrite-properties
 //DEPS org.openrewrite:rewrite-yaml
 
-
+//DEPS org.openrewrite.recipe:rewrite-testing-frameworks:1.37.0
 
 import org.apache.maven.execution.DefaultMavenExecutionRequest;
 import org.apache.maven.execution.MavenExecutionRequest;
@@ -363,13 +363,13 @@ class rewrite implements Callable<Integer> {
             info("Skipping XML files because there are no active XML recipes.");
         }
 
-        if (recipeTypes.contains(MavenVisitor.class)) {
-            info("Parsing POM...");
-            Xml.Document pomAst = parseMaven(ctx);
-            sourceFiles.add(pomAst);
-        } else {
+        // if (recipeTypes.contains(MavenVisitor.class)) {
+        //     info("Parsing POM...");
+        //     Xml.Document pomAst = parseMaven(ctx);
+        //     sourceFiles.add(pomAst);
+        // } else {
             info("Skipping Maven POM files because there are no active Maven recipes.");
-        }
+        //}
 
         info("Running recipe(s)...");
         List<Result> results = recipe.run(sourceFiles, ctx).getResults().stream()
